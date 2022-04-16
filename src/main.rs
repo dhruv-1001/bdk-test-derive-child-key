@@ -19,7 +19,7 @@ fn main() {
     let result = derive_child_key_pair(str_xprv, str_path);
 
     println!("xprv - {}", &result.unwrap().xprv);
-    // println!("xprv - {}", &result.unwrap().xpub);
+    // println!("xpub - {}", &result.unwrap().xpub);
 
 
 }
