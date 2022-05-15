@@ -63,6 +63,6 @@ fn derive_child_key_pair(
 // tprv8hZWYaWfKprzVnSVaaxwYun2yVp9TgpvcosjrGYwgL9hKMU1Jsrp3xKsNCpxSNBSEgUPp7c8A1MYLQcMcq7Ab9eafzNZUHQaBtGBvfCQiMg/* (cli)
 // tprv8hZWYaWfKprzVnSVaaxwYun2yVp9TgpvcosjrGYwgL9hKMU1Jsrp3xKsNCpxSNBSEgUPp7c8A1MYLQcMcq7Ab9eafzNZUHQaBtGBvfCQiMg   (code)
 
-// comparison - xprv
+// comparison - xpub
 // tpubDEFYgzYuUCYfPFUHUEdXxKS9YXL5d21qC7UX8nbF6bx69qimwGgQESwjYN52awKwDd5PWGKXWAw27EBUk6QzSK3eEwsK8odY8FxVn4poRDp/* (cli)
 // tpubDEFYgzYuUCYfPFUHUEdXxKS9YXL5d21qC7UX8nbF6bx69qimwGgQESwjYN52awKwDd5PWGKXWAw27EBUk6QzSK3eEwsK8odY8FxVn4poRDp   (code)
