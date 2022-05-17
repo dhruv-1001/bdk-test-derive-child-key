@@ -6,31 +6,31 @@ use bdk::keys::KeyError::Message;
 use bdk::{Error};
 use std::str::FromStr;
 
-pub struct DerivedChildKeyPair{
+#[derive(Debug, Clone)]
+pub struct DescriptorKeyInfo{
     xprv: String,
     xpub: String,
 }
 
 fn main() {
 
-    let str_xprv = "tprv8ZgxMBicQKsPdMTRB73kkTfC665bK3JL33eAFZ3MUiGZj8jniKQroG2yuamoQcRb24GG8dKRmVgaisjcZrDc9L3fyMf2NW19oajw8iWSwMV".to_string();
-    let str_path = "m/84'/1'/0'/0".to_string();
+    let xprv = "tprv8ZgxMBicQKsPdMTRB73kkTfC665bK3JL33eAFZ3MUiGZj8jniKQroG2yuamoQcRb24GG8dKRmVgaisjcZrDc9L3fyMf2NW19oajw8iWSwMV".to_string();
+    let path = "m/84'/1'/0'/0".to_string();
 
-    let result = derive_child_key_pair(str_xprv, str_path);
+    let result = derive_child_key_pair(xprv, path).unwrap();
 
-    println!("xprv - {}", &result.unwrap().xprv);
-    // println!("xpub - {}", &result.unwrap().xpub);
-
+    println!("xprv - {}", result.clone().xprv);
+    println!("xpub - {}", result.xpub);
 
 }
 
 fn derive_child_key_pair(
-    str_xprv: String,
-    str_path: String
-) -> Result<DerivedChildKeyPair, Error> {
+    xprv: String,
+    path: String
+) -> Result<DescriptorKeyInfo, Error> {
     let secp = Secp256k1::new();
-    let xprv = ExtendedPrivKey::from_str(&str_xprv)?;
-    let path = DerivationPath::from_str(&str_path)?;
+    let xprv = ExtendedPrivKey::from_str(&xprv)?;
+    let path = DerivationPath::from_str(&path)?;
     let derived_xprv = &xprv.derive_priv(&secp, &path)?;
     let origin: KeySource = (xprv.fingerprint(&secp), path);
     let derived_xprv_desc_key: DescriptorKey<Segwitv0> = derived_xprv.into_descriptor_key(Some(origin), DerivationPath::default())?;
@@ -39,7 +39,7 @@ fn derive_child_key_pair(
             .as_public(&secp)
             .map_err(|e| Error::Generic(e.to_string()))?;
         Ok(
-            DerivedChildKeyPair{
+            DescriptorKeyInfo{
                 xprv: desc_seckey.to_string(),
                 xpub: desc_pubkey.to_string(),
             }
